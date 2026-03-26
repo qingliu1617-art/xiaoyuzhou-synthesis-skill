@@ -6,6 +6,31 @@
 
 ---
 
+## 案例：中国具身智能行业深度研究
+
+> 输入：4 期晚点聊播客（至简动力、千寻智能、元力灵机、踏石·它石智行）
+> 输出：[具身智能行业深度研究报告.docx](examples/具身智能行业深度研究报告.docx)
+
+### 报告图表预览
+
+**行业融资趋势（2021–2025）**
+
+![融资趋势](examples/01_funding_trend.png)
+
+**RoboChallenge 主流模型任务成功率对比**
+
+![RoboChallenge评分](examples/02_scurve.png)
+
+**具身智能三道关卡框架**（数据 → 模型 → 硬件）
+
+![三道关卡](examples/04_three_gates.png)
+
+**中国具身智能代表公司策略矩阵**
+
+![策略矩阵](examples/05_strategy_matrix.png)
+
+---
+
 ## 功能
 
 - **音频转录**：输入小宇宙节目链接，自动下载音频、切分长录音（>25分钟）、调用千问 `qwen-audio-turbo` 逐段转录，保存逐字稿 `.txt` 文件
@@ -20,10 +45,12 @@
      ↓
 [Step 0] 转录 → episode_title.txt（交付物）
      ↓
-[Step 1-6] 综合分析 → 行业报告.docx（交付物）
+[Step 1–6] 综合分析 → 行业报告.docx（交付物）
 ```
 
 也可以跳过 Step 0，直接传入已有的逐字稿文件。
+
+---
 
 ## 使用方法
 
@@ -59,6 +86,8 @@ https://www.xiaoyuzhou.fm/episode/yyy
 我上传了 3 个播客访谈的逐字稿，帮我整合成一份行业分析报告。
 ```
 
+---
+
 ## 文件结构
 
 ```
@@ -67,8 +96,15 @@ skill/
 └── scripts/
     └── transcribe.py     # 小宇宙音频转录脚本（CLI 工具）
 
-evals/
-└── evals.json            # 5 个测试用例
+examples/
+├── 具身智能行业深度研究报告.docx   # 示例输出报告
+├── 01_funding_trend.png
+├── 02_scurve.png
+├── 04_three_gates.png
+└── 05_strategy_matrix.png
+
+evals.json                # 5 个测试用例
+podcast-synthesis.skill   # 可一键安装的 Claude skill 包
 ```
 
 ## 单独使用转录脚本
@@ -84,6 +120,8 @@ python scripts/transcribe.py \
 ```
 
 **依赖**：Python 3.12+（标准库）、`ffmpeg`（系统级安装）。无需 pip install。
+
+---
 
 ## 报告结构
 
@@ -102,10 +140,7 @@ python scripts/transcribe.py \
 - `[来源: XXX]` — 第三方数据，标注出处
 - `[研究推断]` — 基于访谈内容的推断，非事实
 
-## 灵感来源
-
-本 skill 的工作流来自对以下晚点聊（LatePost）具身智能系列访谈的综合分析实践：
-贾鹏（至简动力）、韩峰涛（千寻智能）、范浩强（元力灵机）、陈亦伦（踏石·它石智行）。
+---
 
 ## License
 
