@@ -1,0 +1,167 @@
+{
+  "skill_name": "podcast-synthesis",
+  "evals": [
+    {
+      "id": 0,
+      "name": "full-4-transcripts-embodied-ai",
+      "input_mode": "transcript_files",
+      "prompt": "我上传了4个晚点聊播客的逐字稿，分别是至简动力贾鹏、千寻智能韩峰涛、元力灵机范浩强+千寻高阳、踏石/它石陈亦伦的访谈。请帮我把这4个访谈整合成一份行业分析报告，我主要想搞清楚：中国具身智能行业现在到底处于什么阶段，以及不同创始人对行业核心挑战的判断有什么分歧。",
+      "files": ["/sessions/friendly-jolly-ritchie/mnt/uploads/具身智能创业访谈 - 逐字稿合集.docx"],
+      "expected_output": "A structured .docx report with: core question identified, S-curve positioning, at least 2 charts, clear tensions between interviewees surfaced, sources labeled as 访谈 vs third-party, no fabricated data in signals section",
+      "assertions": [
+        {
+          "id": "has_docx_output",
+          "text": "Report was saved as a .docx file",
+          "type": "file_exists"
+        },
+        {
+          "id": "core_question_stated",
+          "text": "Report clearly states a single core question it is trying to answer, not just summarizing each person",
+          "type": "qualitative"
+        },
+        {
+          "id": "tensions_surfaced",
+          "text": "Report explicitly identifies at least one point of disagreement between interviewees (e.g. hardware vs model priority)",
+          "type": "qualitative"
+        },
+        {
+          "id": "source_labels_present",
+          "text": "Report distinguishes between 访谈 (interview) sources and third-party data sources with explicit labels",
+          "type": "qualitative"
+        },
+        {
+          "id": "has_charts",
+          "text": "Report contains at least 2 embedded charts/figures",
+          "type": "qualitative"
+        },
+        {
+          "id": "no_fabricated_signals",
+          "text": "Observation signals in conclusion are labeled as 访谈推断 or have cited sources, not presented as facts without basis",
+          "type": "qualitative"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "2-transcripts-strategic-angle",
+      "input_mode": "transcript_files",
+      "prompt": "这里有2个访谈逐字稿：千寻智能韩峰涛和踏石陈亦伦。他们都从自动驾驶背景转型来做具身智能，但路径不一样。帮我分析一下，从这两个人的对比里，能看出什么关于'如何从自动驾驶经验迁移到具身智能'的洞见？如果我是一个正在考虑进入这个赛道的人，这两条路各自的优劣是什么？",
+      "files": ["/sessions/friendly-jolly-ritchie/mnt/uploads/具身智能创业访谈 - 逐字稿合集.docx"],
+      "expected_output": "A focused report comparing two paths from autonomous driving to embodied AI, with concrete strategic pros/cons for each, structured around the comparison rather than sequential summaries",
+      "assertions": [
+        {
+          "id": "has_docx_output",
+          "text": "Report was saved as a .docx file",
+          "type": "file_exists"
+        },
+        {
+          "id": "comparative_not_sequential",
+          "text": "Report organizes content by theme/dimension of comparison, not just 'Person A thinks X, then Person B thinks Y' sequentially",
+          "type": "qualitative"
+        },
+        {
+          "id": "strategic_advice_present",
+          "text": "Report includes concrete strategic implications for someone entering the field, not just description of what the two founders did",
+          "type": "qualitative"
+        },
+        {
+          "id": "uses_actual_quotes",
+          "text": "Report includes at least 2 direct quotes from the transcripts to anchor key claims",
+          "type": "qualitative"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "implicit-synthesis-request",
+      "input_mode": "transcript_files",
+      "prompt": "帮我看看这些具身智能的访谈，感觉最近这个赛道很热但我不太懂，搞清楚一下",
+      "files": ["/sessions/friendly-jolly-ritchie/mnt/uploads/具身智能创业访谈 - 逐字稿合集.docx"],
+      "expected_output": "Despite vague prompt, skill should still produce a structured report with a clear framing, not just a bullet-point summary. Should identify a core question to answer on the user's behalf.",
+      "assertions": [
+        {
+          "id": "has_docx_output",
+          "text": "Report was saved as a .docx file",
+          "type": "file_exists"
+        },
+        {
+          "id": "frames_core_question",
+          "text": "Report explicitly states what question it chose to answer on behalf of the vague user prompt",
+          "type": "qualitative"
+        },
+        {
+          "id": "accessible_to_non_expert",
+          "text": "Report explains domain-specific terms and is accessible to a non-expert reader, not just jargon-heavy",
+          "type": "qualitative"
+        },
+        {
+          "id": "not_just_summary",
+          "text": "Report has an opinion or synthesis beyond listing what each person said",
+          "type": "qualitative"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "name": "audio-links-transcribe-then-synthesize",
+      "input_mode": "audio_urls",
+      "prompt": "我有两期小宇宙播客的链接，都是关于具身智能的创业访谈。请先把它们转录成逐字稿，再帮我综合分析：这两位创始人对行业现状的判断有什么共识和分歧？\n\nhttps://www.xiaoyuzhou.fm/episode/PLACEHOLDER_URL_1\nhttps://www.xiaoyuzhou.fm/episode/PLACEHOLDER_URL_2\n\n千问 API Key: sk-PLACEHOLDER_KEY",
+      "files": [],
+      "notes": "This eval requires real 小宇宙 URLs and a valid API key. Replace PLACEHOLDER values before running. Tests the full two-step pipeline: transcription → synthesis.",
+      "expected_output": "Two .txt transcript files saved as deliverables, plus one .docx synthesis report. Transcripts should have episode metadata headers. Report should not be run until both transcripts are complete.",
+      "assertions": [
+        {
+          "id": "has_txt_transcripts",
+          "text": "At least 2 .txt transcript files were saved, one per episode URL",
+          "type": "file_exists"
+        },
+        {
+          "id": "transcript_has_metadata_header",
+          "text": "Each .txt file starts with episode title, podcast name, source URL, and transcription model",
+          "type": "qualitative"
+        },
+        {
+          "id": "has_docx_output",
+          "text": "A synthesis report was saved as a .docx file",
+          "type": "file_exists"
+        },
+        {
+          "id": "report_uses_transcript_content",
+          "text": "The .docx report references content from the transcripts (not hallucinated), with at least 2 direct quotes",
+          "type": "qualitative"
+        },
+        {
+          "id": "transcripts_presented_as_deliverables",
+          "text": "The .txt transcripts are shown to the user as standalone deliverables, not just silently used as intermediate files",
+          "type": "qualitative"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "mixed-input-url-plus-file",
+      "input_mode": "mixed",
+      "prompt": "我有一个小宇宙链接和一个已经整理好的逐字稿文件，都是具身智能相关的。帮我把这两个访谈综合分析，看看他们对'数据稀缺性'这个问题的看法有什么异同。\n\n链接：https://www.xiaoyuzhou.fm/episode/PLACEHOLDER_URL\n\n（逐字稿文件已上传）",
+      "files": ["/sessions/friendly-jolly-ritchie/mnt/uploads/具身智能创业访谈 - 逐字稿合集.docx"],
+      "notes": "Tests mixed-mode: one audio URL (needs transcription) + one existing transcript file. Replace PLACEHOLDER URL before running.",
+      "expected_output": "Skill handles both inputs gracefully: transcribes the URL first, then uses both the new transcript and the uploaded file for synthesis.",
+      "assertions": [
+        {
+          "id": "url_was_transcribed",
+          "text": "A .txt transcript was generated from the URL input",
+          "type": "file_exists"
+        },
+        {
+          "id": "both_sources_in_report",
+          "text": "The synthesis report references content from both the URL-sourced transcript and the uploaded file",
+          "type": "qualitative"
+        },
+        {
+          "id": "has_docx_output",
+          "text": "A .docx synthesis report was produced",
+          "type": "file_exists"
+        }
+      ]
+    }
+  ]
+}
